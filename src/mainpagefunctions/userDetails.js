@@ -1,9 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from './userContext';
+// import { Container, Paper } from '@material-ui/core';
+import { useEffect } from 'react';
+
 
 // Define a component to capture user details
 export const UserDetails = () => {
+    const paperStyle = {padding : '20px 20px 20px 40px', width : 400, margin: "30px auto" }
     const navigate = useNavigate();
     const [name, setName] = useState('');
     const [age, setAge] = useState('');
@@ -12,6 +16,8 @@ export const UserDetails = () => {
     const [nationality, setNation] = useState('');
     const [identification_numbers, setID] = useState('');
     const [email, setEmail] = useState('');
+
+    const[persons, setPersons] = React.useState([])
   
   
     // Use the useContext hook to get access to the user context
@@ -19,25 +25,48 @@ export const UserDetails = () => {
   
     // Handle form submission and update user context
     const handleSubmit = (e) => {
+      console.log("TEST")
       e.preventDefault();
-      
+      if (!name || !age || !address || !num_of_family_members || !nationality || !identification_numbers) {
+        alert("All fields must be filled")
+        return
+      }
       const recp = { name, age, address, num_of_family_members, nationality, identification_numbers }
-      addUser(recp);
-  
-      // Clear input fields
-      setName('');
-      setAge('');
-      setEmail('');
-      setAddress('');
-      setFamilyNum('');
-      setID('');
-      setNation('');
+      // addUser(recp);
+      fetch(
+        "http://127.0.0.1:5000/recipients", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(recp)
+        }
+      ).then(() => {
+        alert(`${recp.name} has been added`)
+
+        // Clear input fields
+        setName('');
+        setAge('');
+        setEmail('');
+        setAddress('');
+        setFamilyNum('');
+        setID('');
+        setNation('');
+        window.location.reload(true)
+      })
   
       // Redirect to the /details page
-      navigate('/Userdetails');
+      // navigate('/Userdetails');
     };
   
-  
+    // useEffect(() =>
+    // {
+    //   fetch("http://localhost:5000/recipients")
+    //   .then(res => res.json())
+    //   .then((result) => {
+    //     setPersons(result);
+    //   }
+    // )
+    // }, [])
+
     return (
       <div>
         <h2>Let us remember you/Enter your details:</h2>
@@ -70,9 +99,19 @@ export const UserDetails = () => {
             Email:
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
           </label>
-  
-          <button type="submit">Save</button>
+          <button type="submit" onClick = {handleSubmit}>Save</button>
         </form>
+        {/* <Container>
+          <h1>List of People</h1>
+          <Paper elevation = {3} style = {paperStyle}>
+              {persons.map(person => (
+                <>
+                    <MediaCard id = {person.id} name = {person.name} age = {person.age} address = {person.address} key = {person.id}/>
+                </>
+              ))}
+          </Paper>
+        </Container> */}
       </div>
+      
     );
   };
