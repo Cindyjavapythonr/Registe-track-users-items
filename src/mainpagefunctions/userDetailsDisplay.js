@@ -22,8 +22,6 @@ export const UserDetailsDisplay = () => {
           ) : (
               <p>No user informations found</p>
           )}
-  
-          
       </div>
     );
   };
