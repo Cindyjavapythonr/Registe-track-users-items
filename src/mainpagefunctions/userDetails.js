@@ -13,7 +13,6 @@ export const UserDetails = () => {
     const [num_of_family_members, setFamilyNum] = useState('');
     const [nationality, setNation] = useState('');
     const [identification_numbers, setID] = useState('');
-    const [email, setEmail] = useState('');
 
     const[persons, setPersons] = React.useState([])
   
@@ -37,7 +36,6 @@ export const UserDetails = () => {
         // Clear input fields
         setName('');
         setAge('');
-        setEmail('');
         setAddress('');
         setFamilyNum('');
         setID('');
@@ -94,12 +92,6 @@ export const UserDetails = () => {
             <label style = {{ fontSize: '18px' }}>
               identification_numbers:
               <input type="text" value={identification_numbers} onChange={(e) => setID(e.target.value)} />
-            </label>
-          </div>
-          <div>
-            <label style = {{ fontSize: '18px' }}>
-              Email:
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </label>
           </div>
           <button type="submit">Save</button>
