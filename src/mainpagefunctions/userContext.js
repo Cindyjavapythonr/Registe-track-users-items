@@ -12,7 +12,7 @@ export const UserProvider = (props) => {
 
     //Fetch
     fetch(
-      "http://localhost:5000/recipients", {
+      "http://localhost:5000/recipients/", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(user)

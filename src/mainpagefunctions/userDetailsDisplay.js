@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { UserContext } from './userContext';
 
-// Define a component to display user details
+// Define a component to display essential user details
 export const UserDetailsDisplay = () => {
     const [users] = useContext(UserContext);
   
