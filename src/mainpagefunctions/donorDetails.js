@@ -9,9 +9,8 @@ export const DonorDetails = () => {
     const [name, setName] = useState('');
     const [age, setAge] = useState('');
     const [address, setAddress] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [num_of_family_members, setFamilyNum] = useState('');
+    const [email_address, setEmail] = useState('');
+    const [phone_number, setPhone] = useState('');
     const [nationality, setNation] = useState('');  //for his family members
     const [identification_numbers, setID] = useState('');
     const [expiry_date, setEdate] = useState('');
@@ -28,25 +27,24 @@ export const DonorDetails = () => {
     // Handle form submission and update user context
     const handleSubmit = (e) => {
       e.preventDefault();
-      if (!name || !age || !address || !email || !phone || !num_of_family_members || !nationality || !identification_numbers) {
+      if (!name || !age || !address || !email_address || !phone_number || !nationality || !identification_numbers) {
         alert("Individual fields must be filled")
         return
       }
-      const recp = { name, age, address, num_of_family_members, nationality, identification_numbers }
+      const donor = { name, age, address, phone_number, nationality, identification_numbers, email_address }
       
       fetch(
-        "http://127.0.0.1:5000/recipients/", {
+        "http://localhost:5000/donors/", {
           method: "POST",
           headers: {"Content-Type": "application/json"},
-          body: JSON.stringify(recp)
+          body: JSON.stringify(donor)
         }
       ).then(() => {
-        alert(`${recp.name} has been successfully added`)
+        alert(`${donor.name} has been successfully added`)
         // Clear input fields
         setName('');
         setAge('');
         setAddress('');
-        setFamilyNum('');
         setEmail('');
         setPhone('');
         setID('');
@@ -57,7 +55,7 @@ export const DonorDetails = () => {
   
     useEffect(() =>
     {
-      fetch("http://localhost:5000/recipients")
+      fetch("http://localhost:5000/donors")
       .then(res => res.json())
       .then((result) => {
         setPersons(result);
@@ -90,19 +88,13 @@ export const DonorDetails = () => {
           <div>
             <label style = {{ fontSize: '18px' }}>
             Email:
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input type="email" value={email_address} onChange={(e) => setEmail(e.target.value)} />
             </label>
           </div>
           <div>
             <label style = {{ fontSize: '18px' }}>
             Contact number:
-            <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} />
-            </label>
-          </div>
-          <div>
-            <label style = {{ fontSize: '18px' }}>
-              Number of Family members:
-              <input type="text" value={num_of_family_members} onChange={(e) => setFamilyNum(e.target.value)} />
+            <input type="number" value={phone_number} onChange={(e) => setPhone(e.target.value)} />
             </label>
           </div>
           <div>
@@ -113,13 +105,13 @@ export const DonorDetails = () => {
           </div>
           <div>
             <label style = {{ fontSize: '18px' }}>
-              identification_numbers:
+              Identification numbers:
               <input type="text" value={identification_numbers} onChange={(e) => setID(e.target.value)} />
             </label>
           </div>
           <div>
             <label style = {{ fontSize: '18px' }}>
-              Expiry_date:
+              Expiry date:
               <input type="text" value={expiry_date} onChange={(e) => setEdate(e.target.value)} />
             </label>
           </div>
@@ -167,7 +159,7 @@ export const DonorDetails = () => {
                       <div key={index}>
                           <p style={{fontSize: '18px'}}>Name: {person.name}</p>
                           <p style={{fontSize: '18px'}}>Age: {person.phone}</p>
-                          <p style={{fontSize: '18px'}}>Email address: {person.email}</p>
+                          <p style={{fontSize: '18px'}}>Email address: {person.email_address}</p>
                           <p style={{fontSize: '18px'}}>Address: {person.address}</p>
                           <hr />
                       </div>

@@ -95,13 +95,13 @@ export const UserDetails = () => {
           </div>
           <div>
             <label style = {{ fontSize: '18px' }}>
-              identification_numbers:
+              Identificaton numbers:
               <input type="text" value={identification_numbers} onChange={(e) => setID(e.target.value)} />
             </label>
           </div>
           <div>
             <label style = {{ fontSize: '18px' }}>
-              Expiry_date:
+              Expiry date:
               <input type="text" value={expiry_date} onChange={(e) => setEdate(e.target.value)} />
             </label>
           </div>
