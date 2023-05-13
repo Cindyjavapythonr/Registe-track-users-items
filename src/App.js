@@ -13,7 +13,7 @@ import { ReceiveDDetails } from './mainpagefunctions/receiveDDetailsDisplay';
 import { DonorDetails } from './mainpagefunctions/donorDetails';
 
 const { Header, Content, Sider, Footer } = Layout;
-const labels = ['Home', 'Make a request: Aid Category & Kit', 'About us'];
+const labels = ['Home', 'Make a request', 'About us'];
 
 // Set the header content
 const menufuncs = ["/Home", "/RRequest:AidC&K", "/Aboutus"].map((route, key) => ({
