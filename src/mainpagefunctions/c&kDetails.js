@@ -28,7 +28,7 @@ export const AidCKDetail = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!kit || !quantity || !recipient_name || !note) {
+        if (!quantity || !recipient_name || !note) {
           alert("All fields must be filled")
           return
         }
@@ -43,6 +43,7 @@ export const AidCKDetail = () => {
             setName('');
             setQuantity('');
             setKit('');
+            setItem('');
             setNote('');
             window.location.reload(true)
           })
@@ -83,6 +84,12 @@ export const AidCKDetail = () => {
                 </div>
                 <div>
                     <label style = {{ fontSize: '18px' }}>
+                    Item:
+                    <input type="text" value={item} onChange={(e) => setItem(e.target.value)} />
+                    </label>
+                </div>
+                <div>
+                    <label style = {{ fontSize: '18px' }}>
                     Quantity:
                     <input type="text" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
                     </label>
@@ -105,6 +112,7 @@ export const AidCKDetail = () => {
                                 <p style={{fontSize: '18px'}}>Id: {allRequest.id}</p>
                                 <p style={{fontSize: '18px'}}>Recipient Name: {allRequest.recipient_name}</p>
                                 <p style={{fontSize: '18px'}}>Kit: {allRequest.kit}</p>
+                                <p style={{fontSize: '18px'}}>Item: {allRequest.item}</p>
                                 <p style={{fontSize: '18px'}}>Quantity: {allRequest.quantity}</p>
                                 <p style={{fontSize: '18px'}}>Note: {allRequest.note}</p>
                                 <hr />
