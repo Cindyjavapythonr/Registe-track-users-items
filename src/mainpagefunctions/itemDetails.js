@@ -12,16 +12,17 @@ export const ItemDetails = () => {
     const [allergens, setAllerg] = useState('');
 
     const[items, setItems] = React.useState([]);
+    const[size, setSize] = React.useState([]);
     const[kit, setKit] = React.useState([]);
   
     // Handle form submission and update user context
     const handleSubmit = (e) => {
       e.preventDefault();
-      if (!name || !category || !brand || !quantity || !expiry_date || !ingredients || !allergens) {
+      if (!name || !brand || !quantity || !expiry_date || !ingredients || !allergens) {
         alert("All fields must be filled")
         return
       }
-      const aidItems = { name, category, quantity, expiry_date, ingredients, allergens, brand}
+      const aidItems = { name, category, quantity, expiry_date, ingredients, allergens, brand, size, kit}
       console.log(aidItems)
       
       fetch(
@@ -39,6 +40,7 @@ export const ItemDetails = () => {
         setEdate('');
         setIngr('');
         setAllerg('');
+        setSize('')
         window.location.reload(true)
       })
     };
@@ -79,18 +81,18 @@ export const ItemDetails = () => {
                 </select>
             </label>
           </div>
-          {/* <div>
+          <div>
             <label style = {{ fontSize: '18px'}}>
                 Avalible Aid Kit:
                 <select value={kit} onChange={(e) => setKit(e.target.value)}>
                 <option value="">Select the Aid Kit</option>
-                <option value="food">Personal Hygiene, Dry Food and Hot Food Items</option>
-                <option value="clothing">Footwear, Warm Clothing and Casual Clothing</option>
-                <option value="bedding">Warm Clothing, Bedding</option>
-                <option value="electrical&furniture">Electrical Supplies, Furniture Supplies </option>
+                <option value="personal hygiene">Personal Hygiene</option>
+                <option value="footwear">Footwear</option>
+                <option value="clothing">Warm Clothing</option>
+                <option value="electrical">Electrical Supplies</option>
                 </select>
             </label>
-        </div> */}
+        </div>
           <div>
             <label style = {{ fontSize: '18px' }}>
               Quantity:
@@ -121,6 +123,12 @@ export const ItemDetails = () => {
               <input type="text" value={allergens} onChange={(e) => setAllerg(e.target.value)} />
             </label>
           </div>
+          <div>
+            <label style = {{ fontSize: '18px' }}>
+              Size:
+              <input type="text" value={size} onChange={(e) => setSize(e.target.value)} />
+            </label>
+          </div>
           <button type="submit">Save</button>
         </form>
         <div>
@@ -137,6 +145,8 @@ export const ItemDetails = () => {
                           <p style={{fontSize: '18px'}}>Expiry Date: {item.expiry_date}</p>
                           <p style={{fontSize: '18px'}}>Ingredients: {item.ingredients}</p>
                           <p style={{fontSize: '18px'}}>Allergens: {item.allergens}</p>
+                          <p style={{fontSize: '18px'}}>Size: {item.size}</p>
+                          <p style={{fontSize: '18px'}}>Kit: {item.kit}</p>
                           <hr />
                       </div>
                   ))}
