@@ -7,10 +7,10 @@ export const AboutUs = () => {
     }
     return (
         <div className="about-me">
-        <h1>Our Organization</h1>
+        <h1>Our Organization VRIFamily Charity Aid</h1>
         <p>
-            Our organization was founded in 2005 with the goal of making a positive impact in our community. Since then, we have worked hard to achieve our mission and have made significant progress in various areas, such as education, health, and poverty alleviation.
-        </p>
+        VR1Family Charity Aid Services started off as a small not for profit organization, founded in June 2019 by a group of 5 volunteers in a garage in Mallacoota, Australia.
+        Our Focus is to provide immediate humanitarian assistance and improve the lives of people facing economic, social, and health challenges in the immediate aftermath of natural calamities in their local community. </p>
         <h2>Our Achievements</h2>
         <ul>
             <li>Donated $500,000 to build a new school in our community</li>
@@ -19,16 +19,22 @@ export const AboutUs = () => {
         </ul>
         <h2>Our Philanthropic Activities</h2>
         <p>
-            We are dedicated to giving back to our community and helping those in need. Our philanthropic activities include organizing charity events, volunteering at local schools and hospitals, and supporting various non-profit organizations.
+            We are dedicated to giving back to our community and helping those in need. We supply aid through the form of money, food/essential supply packages, and aid equipment. 
+            Since 2020, VR1Family slowly started1 expanding their footprint outside Australia, serving in multiple humanitarian aid assistance programs such as Mount Sumeru volcanic eruption in Indonesia
+            , flooding in Belgium and Germany , and the earthquake in Haiti.
         </p>
         <div className="media">
             <img src="https://dummyimage.com/200x200/000/fff" alt="Organization's Logo" />
             <div className="buttons">
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"><button>Facebook</button></a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><button>Instagram</button></a>
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                <button>Facebook</button>
+                </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                <button>Instagram</button>
+                </a>
             </div>
         </div>
         </div>
-        )
+    )
 };
 
