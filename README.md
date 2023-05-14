@@ -11,8 +11,17 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+Please make sure the latest npm is used to avoid any inconsistency issue.\
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+**If you encount "sh: react-scripts: command not found" error after run `npm start`, There is few steps you can do to solve the issue:**
+- run `npm cache clean --force`
+- run `rm -rf node_modules`
+- run `npm install`
+- run `npm install react-scripts`
+
+Then you can try run `npm start` again. If there is more issues, please ask ChatGPt for help ;D
 
 ### `npm test`
 

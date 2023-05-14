@@ -1,4 +1,4 @@
-import { SkinOutlined, BarChartOutlined, FormOutlined, LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
+import { SkinOutlined, BarChartOutlined, FormOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
@@ -6,24 +6,25 @@ import { UserProvider } from './mainpagefunctions/userContext';
 import { UserDetails } from './mainpagefunctions/userDetails';
 import { UserDetailsDisplay } from './mainpagefunctions/userDetailsDisplay';
 import { ItemDetails } from './mainpagefunctions/itemDetails';
-import { AidCategory, AidKit, AidCKDetail } from './mainpagefunctions/c&kDetails';
-import { RecipientRequests, DonorRequests } from './mainpagefunctions/userRequests';
-import { AboutUs} from './mainpagefunctions/aboutus';
-
+import { AidCKDetail } from './mainpagefunctions/c&kDetails';
+import { RecipientRequests } from './mainpagefunctions/userRequests';
+import { AboutUs } from './mainpagefunctions/aboutus';
+import { ReceiveDDetails } from './mainpagefunctions/receiveDDetailsDisplay';
+import { DonorDetails } from './mainpagefunctions/donorDetails';
 
 const { Header, Content, Sider, Footer } = Layout;
-const labels = ['Home', 'Aid Category & Kit', 'About us'];
+const labels = ['Home', 'Make a request', 'About us'];
 
 // Set the header content
-const menufuncs = ["/Home", "/AidC&K", "/Aboutus"].map((route, key) => ({
+const menufuncs = ["/Home", "/RRequest:AidC&K", "/Aboutus"].map((route, key) => ({
   label: labels[key],
   route
 }));
 
 // Set the sider content
-const siderlabels = ['Get Help', 'Offer Help', 'Aid Items', 'People-in-need: Make a request', 'Donor: Make a request', 'Details'];
-const icons = [UserOutlined, UserOutlined, SkinOutlined, FormOutlined, FormOutlined, BarChartOutlined];
-const sider = ["/AidRecipients", "/AidDonors", "/AidItems", "/RRequest", "/DRequest", "/Userdetails" ].map((route, index) => {
+const siderlabels = ['Aid Recipients', 'Aid Donors', 'Aid Items', 'Donor: Received items'];
+const icons = [UserOutlined, UserOutlined, SkinOutlined, FormOutlined];
+const sider = ["/AidRecipients", "/AidDonors", "/AidItems", "/ReceiveDonorDetails" ].map((route, index) => {
   const key = String(index);
   return {
     icon: React.createElement(icons[key]),
@@ -105,19 +106,17 @@ const App = () => {
                 }}
               >
                 <Routes>
-                  <Route path="/Home" element={<h1>Welcome to VR1Family!! <br /> We are here to help</h1>} />
+
+                  <Route path="/Home" element={<h1>Welcome to VR1Family <br /> <br /> We are here to help you out of the mess</h1>} />
                   <Route path="/AidRecipients" element={<UserDetails />} />
-                  <Route path="/AidDonors" element={<UserDetails />} />
+                  <Route path="/AidDonors" element={<DonorDetails />} />
                   <Route path="/AidItems" element={<ItemDetails />} />
                   <Route path="/AidItems/details" element={<UserDetailsDisplay />} />
-                  <Route path="/Userdetails" element={<UserDetailsDisplay />} />
+                  <Route path="/ReceiveDonorDetails" element={<ReceiveDDetails />} />
                   <Route path="/RRequest" element={<RecipientRequests />} />
-                  <Route path="/DRequest" element={<DonorRequests />} />
 
 
-                  <Route path="/AidKit" element={<AidKit />} />
-                  <Route path="/AidCategory" element={<AidCategory />} />
-                  <Route path="/AidC&K" element={<AidCKDetail />} />
+                  <Route path="/RRequest:AidC&K" element={<AidCKDetail />} />
                   <Route path="/AboutUs" element={<AboutUs />} />
                   
                 </Routes>

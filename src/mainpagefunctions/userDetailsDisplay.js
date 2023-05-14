@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { UserContext } from './userContext';
 
-// Define a component to display user details
+// Define a component to display essential user details
 export const UserDetailsDisplay = () => {
     const [users] = useContext(UserContext);
   
@@ -22,8 +22,6 @@ export const UserDetailsDisplay = () => {
           ) : (
               <p>No user informations found</p>
           )}
-  
-          
       </div>
     );
   };
