@@ -1,45 +1,40 @@
-export const AboutUs = () => {
-    return (
-        <div>
-            <h3>About us</h3>
-            <body>We are VR1Family Charity Aid Services, a global organization committed to providing immediate humanitarian assistance and improving the lives of people in need. 
 
-                VR1Family was founded in June 2019 by a group of 5 volunteers in a garage in Mallacoota, Australia, who were united in the belief that every person deserves a chance to thrive irrespective of personal circumstances. Their first project to collect aid and donations from community members and distribute it to people that were affected during the 2019-2020 Australian bushfires.
-                
-                Following appreciation from local news channels as well as the international media, the group was able to rapidly expand its operations, starting a journey to create a better world for all.
-                
-                Since our inception, we have grown to become a global organization with our presence established in over 100 countries and served by a dedicated team of 15,000 volunteers. We have served communities in many countries during natural disasters such as the Mount Sumeru volcanic eruption in Indonesia, flooding in Belgium and Germany, and the earthquake in Haiti.
-                
-                At VR1Family Charity Aid Services, we distribute survival kits in the event of a natural disaster, including food, water, and clothing. We have also expanded our operations to provide various other humanitarian assistance packages, such as wool and baby food, soap/textiles and toy packages, plow and farm tool packages, medical supply packages, and resettlement kits for refugees.
-                
-                We are committed to helping those in need, and this is why we run regular fund-raising events. We believe that our work is only possible because of the generosity of our supporters and volunteers.
-                
-                We are proud of what we have achieved so far, but there is still much more work to be done. At VR1Family Charity Aid Services, we remain dedicated to creating a better world for all, one person at a time. Join us today and help make a difference.
-            </body>
-            <img src="./vr1_logo.png" height={250} width={250}></img>
-            <script type="text/javascript" 
-                    src="https://platform-api.sharethis.com/js/sharethis.js#property=645f
-                    04220c19c90019685b11&product=inline-follow-buttons&source=platform" 
-                    async="async"></script>
-                    <div class="sharethis-inline-follow-buttons"></div>
-                    <div class="fb-page" data-href="https://www.facebook.com/VR1Family" 
-                    data-tabs="" data-width="" data-height="" data-small-header="false" 
-                    data-adapt-container-width="true" data-hide-cover="false" 
-                    data-show-facepile="true"><blockquote 
-                    cite="https://www.facebook.com/VR1Family"
-                    class="fb-xfbml-parse-ignore"><a 
-                    href="https://www.facebook.com/VR1Family">VR1Family Charity Aid Services
-                    </a></blockquote></div>
-            <div id="fb-root"><script async defer crossorigin="anonymous" 
-                    src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v16.0" 
-                    nonce="Ija5oUX2"></script>
-            </div>
-            <a href="https://www.instagram.com/vr1familycharity/" target="_blank" rel="noreferrer">
+export const AboutUs = () => {
+    // A static page that shows briefly mentions the history, achievements, and the philanthropic activities of the organization. The UI should support different content types such as text, images, audio and video files.
+    // Two buttons one links to the facebook page one links insta.
+    function handleClick(){
+
+    }
+    return (
+        <div className="about-me">
+        <h1>Our Organization VRIFamily Charity Aid</h1>
+        <p>
+        VR1Family Charity Aid Services started off as a small not for profit organization, founded in June 2019 by a group of 5 volunteers in a garage in Mallacoota, Australia.
+        Our Focus is to provide immediate humanitarian assistance and improve the lives of people facing economic, social, and health challenges in the immediate aftermath of natural calamities in their local community. </p>
+        <h2>Our Achievements</h2>
+        <ul>
+            <li>Donated $500,000 to build a new school in our community</li>
+            <li>Provided free health checkups to over 1,000 people</li>
+            <li>Distributed food and clothing to hundreds of families in need</li>
+        </ul>
+        <h2>Our Philanthropic Activities</h2>
+        <p>
+            We are dedicated to giving back to our community and helping those in need. We supply aid through the form of money, food/essential supply packages, and aid equipment. 
+            Since 2020, VR1Family slowly started1 expanding their footprint outside Australia, serving in multiple humanitarian aid assistance programs such as Mount Sumeru volcanic eruption in Indonesia
+            , flooding in Belgium and Germany , and the earthquake in Haiti.
+        </p>
+        <div className="media">
+            <img src="https://dummyimage.com/200x200/000/fff" alt="Organization's Logo" />
+            <div className="buttons">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                <button>Facebook</button>
+                </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
                 <button>Instagram</button>
-            </a>
+                </a>
+            </div>
         </div>
-        
-        
+        </div>
     )
 };
 
