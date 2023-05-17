@@ -15,11 +15,21 @@ export const CategoryAndKitsDetails = () => {
     const [kits, setKits] = React.useState([]);
     const [items, setItems] = React.useState([]);
 
+    //   const items = [
+    //   { name:"DryFoodItems", inventory:'low'},
+    //   { name:"HotFoodItems", inventory:'low'},
+    //   { name:"PersonalHygiene", inventory:'low'},
+    //   { name:"Footwear", inventory:'low'},
+    //   { name:"Warmlothing", inventory:'low'},
+    //   { name:"CasualClothing", inventory:'low'}
+    // ]
+
     const handleFormChange = (index, event) => {
         let data = [...kitItems];
-        data[index][event.target.itemName] = event.target.value;
+        data[index][event.target.name] = event.target.value;
         setKitItems(data);
     }
+
 
     const addKitItems = () => {
         let newfield = { itemName: '', amount: '' };
@@ -137,27 +147,33 @@ export const CategoryAndKitsDetails = () => {
           <div>
             {kitItems.map((input, index) => (
                 <div key ={index}>
-                    <select 
-                    name='itemName'
-                    value={input.itemName}
-                    placeholder='ItemName'
-                    onChange={event => handleFormChange(index, event)}>
-                        <option>Choose an Item</option>
-                        {items.map((item) => (
-                            <option>{item.name}</option>
-                        ))}
-                    </select>
-                    <input 
-                      name='amount'
-                      placeholder='Amount'
-                      value ={input.amount}
-                      onChange={event => handleFormChange(index, event)}
-                    />
-                    <button onClick={() => removeKitItems(index)}>Remove</button>
+                    <div>
+                      <label style = {{ fontSize: '18px'}}>
+                          What would you like to add:
+                          <select 
+                            name='itemName'
+                            value={input.itemName}
+                            placeholder='ItemName'
+                            onChange={event => handleFormChange(index, event)}>
+                              {items.map((item) => (
+                                <option>{item.name}</option>
+                              ))}
+                          </select>
+                          <input 
+                            name='amount'
+                            placeholder='Amount'
+                            value ={input.amount}
+                            size={'5'}
+                            onChange={event => handleFormChange(index, event)}
+                          />
+                          <button onClick={() => removeKitItems(index)}>Remove</button>
+                      </label>
+                    </div>                   
                 </div>
             ))}
           </div>
           <button onClick={addKitItems}>Add More..</button>
+          <div />
           <button type="submit">Save</button>
         </form>
         <div>

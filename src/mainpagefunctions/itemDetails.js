@@ -11,10 +11,21 @@ export const ItemDetails = () => {
     const [ingredients, setIngr] = useState('');
     const [allergens, setAllerg] = useState('');
 
+    const[categories, setCategories] = React.useState([]);
+    const[kits, setKits] = React.useState([]);
     const[items, setItems] = React.useState([]);
     const[size, setSize] = React.useState([]);
     const[kit, setKit] = React.useState([]);
   
+    // const categories = [
+    //   { name:"DryFoodItems", inventory:'low'},
+    //   { name:"HotFoodItems", inventory:'low'},
+    //   { name:"PersonalHygiene", inventory:'low'},
+    //   { name:"Footwear", inventory:'low'},
+    //   { name:"Warmlothing", inventory:'low'},
+    //   { name:"CasualClothing", inventory:'low'}
+    // ]
+
     // Handle form submission and update user context
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -53,6 +64,18 @@ export const ItemDetails = () => {
         setItems(result);
       }
     )
+      fetch("http://localhost:5000/categories/category")
+      .then(res => res.json())
+      .then((result) => {
+        setCategories(result);
+      }
+    )
+      fetch("http://localhost:5000/categories/kit")
+      .then(res => res.json())
+      .then((result) => {
+        setKits(result);
+      }
+    )
     }, [])
 
     return ( 
@@ -69,30 +92,22 @@ export const ItemDetails = () => {
             <label style = {{ fontSize: '18px'}}>
                 Category:
                 <select value={category} onChange={(e) => setCat(e.target.value)}>
-                <option value="DryFoodItems">Dry Food Items</option>
-                <option value="HotFoodItems">Hot Food Items</option>
-                <option value="PersonalHygiene">Personal Hygiene</option>
-                <option value="Footwear">Footwear</option>
-                <option value="Warmlothing">Warm Clothing</option>
-                <option value="CasualClothing">Casual Clothing</option>
-                <option value="FurnitureSupplies">Furniture Supplies</option>
-                <option value="ElectricalSupplies">Electrical Supplies</option>
-                <option value="Bedding">Bedding</option>
+                  {categories.map((currCategory) => (
+                    <option>{currCategory.name}</option>
+                  ))}
                 </select>
             </label>
           </div>
           <div>
             <label style = {{ fontSize: '18px'}}>
-                Avalible Aid Kit:
+                Aid Kit:
                 <select value={kit} onChange={(e) => setKit(e.target.value)}>
-                <option value="">Select the Aid Kit</option>
-                <option value="personal hygiene">Personal Hygiene</option>
-                <option value="footwear">Footwear</option>
-                <option value="clothing">Warm Clothing</option>
-                <option value="electrical">Electrical Supplies</option>
+                  {kits.map((currKit) => (
+                    <option>{currKit.name}</option>
+                  ))}
                 </select>
             </label>
-        </div>
+          </div>
           <div>
             <label style = {{ fontSize: '18px' }}>
               Quantity:
