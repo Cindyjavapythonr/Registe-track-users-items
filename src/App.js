@@ -6,6 +6,7 @@ import { UserProvider } from './mainpagefunctions/userContext';
 import { UserDetails } from './mainpagefunctions/userDetails';
 import { UserDetailsDisplay } from './mainpagefunctions/userDetailsDisplay';
 import { ItemDetails } from './mainpagefunctions/itemDetails';
+import { CategoryAndKitsDetails } from './mainpagefunctions/category&kitsDetails';
 import { AidCKDetail } from './mainpagefunctions/c&kDetails';
 import { RecipientRequests } from './mainpagefunctions/userRequests';
 import { AboutUs } from './mainpagefunctions/aboutus';
@@ -13,18 +14,18 @@ import { ReceiveDDetails } from './mainpagefunctions/receiveDDetailsDisplay';
 import { DonorDetails } from './mainpagefunctions/donorDetails';
 
 const { Header, Content, Sider, Footer } = Layout;
-const labels = ['Home', 'Make a request', 'About us'];
+const labels = ['Home', 'Make a request', 'Make a donation', 'About us'];
 
 // Set the header content
-const menufuncs = ["/Home", "/RRequest:AidC&K", "/Aboutus"].map((route, key) => ({
+const menufuncs = ["/Home", "/RRequest:AidC&K", "/ReceiveDonorDetails", "/Aboutus"].map((route, key) => ({
   label: labels[key],
   route
 }));
 
 // Set the sider content
-const siderlabels = ['Aid Recipients', 'Aid Donors', 'Aid Items', 'Donor: Received items'];
-const icons = [UserOutlined, UserOutlined, SkinOutlined, FormOutlined];
-const sider = ["/AidRecipients", "/AidDonors", "/AidItems", "/ReceiveDonorDetails" ].map((route, index) => {
+const siderlabels = ['Aid Recipients', 'Aid Donors', 'Aid Categories & Kits', 'Aid Items'];
+const icons = [UserOutlined, UserOutlined, SkinOutlined, SkinOutlined];
+const sider = ["/AidRecipients", "/AidDonors", "/AidCategoriesAndKits", "/AidItems" ].map((route, index) => {
   const key = String(index);
   return {
     icon: React.createElement(icons[key]),
@@ -65,7 +66,7 @@ const App = () => {
           </Header>
           <Layout>
             <Sider
-              width={200}
+              width={250}
               style={{
                 background: colorBgContainer,
               }}
@@ -73,6 +74,8 @@ const App = () => {
               <Menu
                 mode="inline"
                 style={{
+                  position: "static",
+                  overflow: "auto",
                   height: '100%',
                   borderRight: 0,
                 }}
@@ -114,8 +117,7 @@ const App = () => {
                   <Route path="/AidItems/details" element={<UserDetailsDisplay />} />
                   <Route path="/ReceiveDonorDetails" element={<ReceiveDDetails />} />
                   <Route path="/RRequest" element={<RecipientRequests />} />
-
-
+                  <Route path="/AidCategoriesAndKits" element={<CategoryAndKitsDetails />} />
                   <Route path="/RRequest:AidC&K" element={<AidCKDetail />} />
                   <Route path="/AboutUs" element={<AboutUs />} />
                   
