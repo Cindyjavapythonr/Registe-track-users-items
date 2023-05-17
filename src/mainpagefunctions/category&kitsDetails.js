@@ -8,7 +8,7 @@ export const CategoryAndKitsDetails = () => {
     
     const [kitName, setKitName] = useState('');
     const [kitItems, setKitItems] = useState([
-        {itemName: '', amount: ''}
+        {itemName: '', amount: 0}
     ]);
     
     const [categories, setCategories] = React.useState([]);
@@ -160,10 +160,11 @@ export const CategoryAndKitsDetails = () => {
                               ))}
                           </select>
                           <input 
+                            type='number'
                             name='amount'
                             placeholder='Amount'
                             value ={input.amount}
-                            size={'5'}
+                            size={'1'}
                             onChange={event => handleFormChange(index, event)}
                           />
                           <button onClick={() => removeKitItems(index)}>Remove</button>
