@@ -43,8 +43,8 @@ export const AidCKDetail = () => {
     const handleFormCategoryChange = (index, event) => {
         let requestedCategory = event.target.value;
         setCategoryOfRequests(requestedCategory);
-        let updatedItems = getUpdatedItems(requestedCategory);
-        setItems(updatedItems);
+        // let updatedItems = getUpdatedItems(requestedCategory);
+        // setItems(updatedItems);
         let data = [...itemRequests];
         //let requestedCategory = [...categoryOfRequests]
         data[index][event.target.name] = event.target.value;

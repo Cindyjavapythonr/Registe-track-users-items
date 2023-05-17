@@ -22,7 +22,7 @@ export const CategoryAndKitsDetails = () => {
     }
 
     const addKitItems = () => {
-        let newfield = { name: '', age: '' };
+        let newfield = { itemName: '', amount: '' };
     
         setKitItems([...kitItems, newfield]);
     }
@@ -44,7 +44,7 @@ export const CategoryAndKitsDetails = () => {
       console.log(aidCategory)
       
       fetch(
-        "http://localhost:5000/categories/", {
+        "http://localhost:5000/categories/category", {
           method: "POST",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify(aidCategory)
@@ -68,7 +68,7 @@ export const CategoryAndKitsDetails = () => {
         console.log(aidKit)
         
         fetch(
-          "http://localhost:5000/kit/", {
+          "http://localhost:5000/categories/kit/", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(aidKit)
@@ -83,13 +83,13 @@ export const CategoryAndKitsDetails = () => {
   
     useEffect(() =>
     {
-      fetch("http://localhost:5000/categories")
+      fetch("http://localhost:5000/categories/category")
       .then(res => res.json())
       .then((result) => {
         setCategories(result);
       }
     )
-    fetch("http://localhost:5000/kits")
+    fetch("http://localhost:5000/categories/kit")
     .then(res => res.json())
     .then((result) => {
       setKits(result);
