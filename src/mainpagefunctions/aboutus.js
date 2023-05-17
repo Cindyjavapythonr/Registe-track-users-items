@@ -26,7 +26,7 @@ export const AboutUs = () => {
         </p>
         <h3 className='title'>Follow Us</h3>
         <div className="media">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/bdBG5VO01e0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe src="https://www.veed.io/embed/a2436f83-264e-46a7-be42-19606a713ada" width="744" height="504" frameborder="0" title="Project Name" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             <div className="buttons">
             <a href=" https://www.facebook.com/VR1Family" target="_blank" rel="noopener noreferrer">
                 <button>Facebook</button>
