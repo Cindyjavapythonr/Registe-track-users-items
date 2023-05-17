@@ -99,12 +99,12 @@ export const CategoryAndKitsDetails = () => {
         setCategories(result);
       }
     )
-    // fetch("http://localhost:5000/categories/kit")
-    // .then(res => res.json())
-    // .then((result) => {
-    //   setKits(result);
-    // }
-    // )
+    fetch("http://localhost:5000/categories/kit")
+    .then(res => res.json())
+    .then((result) => {
+      setKits(result);
+    }
+    )
       fetch("http://localhost:5000/items")
       .then(res => res.json())
       .then((result) => {
@@ -196,8 +196,9 @@ export const CategoryAndKitsDetails = () => {
               <ul>
                   {kits.map((item, index) => (
                       <div key={index}>
-                          <p style={{fontSize: '18px'}}>Category: {item.name}</p>
-                          <p style={{fontSize: '18px'}}>Inventory Status: {item.items}</p>
+                          <p style={{fontSize: '18px'}}>Kit Name: {item.name}</p>
+                          <p style={{fontSize: '18px'}}>Item Name: {item.items[index].itemName}</p>
+                          <p style={{fontSize: '18px'}}>Item Amount: {item.items[index].amount}</p>
                           <hr />
                       </div>
                   ))}
