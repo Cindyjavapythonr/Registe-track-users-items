@@ -8,7 +8,7 @@ export const CategoryAndKitsDetails = () => {
     
     const [kitName, setKitName] = useState('');
     const [kitItems, setKitItems] = useState([
-        {itemName: '', amount: 0}
+        {'': 0}
     ]);
     
     const [categories, setCategories] = React.useState([]);
@@ -78,7 +78,7 @@ export const CategoryAndKitsDetails = () => {
         console.log(aidKit)
         
         fetch(
-          "http://localhost:5000/categories/kit/", {
+          "http://localhost:5000/categories/kit", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(aidKit)
@@ -104,7 +104,7 @@ export const CategoryAndKitsDetails = () => {
     .then((result) => {
       setKits(result);
     }
-  )
+    )
       fetch("http://localhost:5000/items")
       .then(res => res.json())
       .then((result) => {
@@ -197,8 +197,9 @@ export const CategoryAndKitsDetails = () => {
               <ul>
                   {kits.map((item, index) => (
                       <div key={index}>
-                          <p style={{fontSize: '18px'}}>Category: {item.name}</p>
-                          <p style={{fontSize: '18px'}}>Inventory Status: {item.items}</p>
+                          <p style={{fontSize: '18px'}}>Kit Name: {item.name}</p>
+                          <p style={{fontSize: '18px'}}>Item Name: {item.items[index].itemName}</p>
+                          <p style={{fontSize: '18px'}}>Item Amount: {item.items[index].amount}</p>
                           <hr />
                       </div>
                   ))}

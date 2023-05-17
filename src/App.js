@@ -12,6 +12,7 @@ import { RecipientRequests } from './mainpagefunctions/userRequests';
 import { AboutUs } from './mainpagefunctions/aboutus';
 import { ReceiveDDetails } from './mainpagefunctions/receiveDDetailsDisplay';
 import { DonorDetails } from './mainpagefunctions/donorDetails';
+import logo from './images/vr1_logo.png';
 
 const { Header, Content, Sider, Footer } = Layout;
 const labels = ['Home', 'Make a request', 'Make a donation', 'About us'];
@@ -51,11 +52,16 @@ const App = () => {
             }} >
             <div className="logo" style={{
                 float: 'left',
-                width: 120,
+                width: 60,
                 height: 31,
                 margin: '16px 24px 16px 0',
                 background: 'rgba(255, 255, 255, 0.2)',
-              }} />
+                backgroundImage: {logo}, 
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+              }}>
+                <img src={logo} width="60" height="40" />
+              </div>
             <Menu theme="dark" mode="horizontal" 
               defaultSelectedKeys={['O']} 
               items={menufuncs.map(({ label, route }) => ({ 
