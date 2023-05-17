@@ -29,6 +29,16 @@ export const AidCKDetail = () => {
         setSelectedKit(kits.filter(kit => kit.name === e.target.value))
     }
 
+    const handleKitButton = () => {
+        setAidType('kit');
+        setQuantity(['']);
+    }
+
+    const handleItemButton = () => {
+        setAidType('item');
+        setQuantity(['']);
+    }
+
     // Submit a new request with the recipient name, list of kits/items and a note
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -77,15 +87,6 @@ export const AidCKDetail = () => {
     )
     }, [])
 
-    // Fetch all corresponding aid items when categories value changes
-    useEffect(() =>{
-        
-        // .then((result) => {
-        //     setItems(result);
-        // }
-    }
-    , [categories])
-
     return(
         <div>
             <h3>The available Aid Kits</h3>
@@ -99,8 +100,8 @@ export const AidCKDetail = () => {
                 </div>
                 <div>
                     <label style = {{ fontSize: '18px' }}> What would you like to request:</label>
-                    <button onClick={() => setAidType('kit')}> Aid Kit</button>
-                    <button onClick={() => setAidType('item')}> Aid Item</button>
+                    <button onClick={() => handleKitButton()}> Aid Kit</button>
+                    <button onClick={() => handleItemButton()}> Aid Item</button>
                 </div>
                 {aidType === 'kit' ? (
                     <div>
