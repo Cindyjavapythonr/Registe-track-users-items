@@ -2,81 +2,39 @@ import React, { useState, useEffect } from 'react';
 
 export const AidCKDetail = () => {
     const[recipient_name, setName] = useState('');
-    const[kitRequests, setKitRequests] = React.useState([
-        {kitName: '', quantity: ''}
-    ]);
-    const[categoryOfRequests, setCategoryOfRequests] = React.useState(['']);
-    const[itemRequests, setItemRequests] = React.useState([
-        {itemName: '', quantity: ''}
-    ]);
-    const[note, setNote] = React.useState([]);
+    const[kit, setKit] = useState(['']);
+    const[item, setItem] = useState(['']);
+    const[quantity, setQuantity] = useState(['']);
+    const[note, setNote] = useState(['']);
     
-    const[kit, setKit] = React.useState([]);
+    const[aidType, setAidType] = useState('kit');
+    const [category, setCategory] = useState(['']);
 
     const[kits, setKits] = React.useState([]);
     const[categories, setCategories] = React.useState([]);
     const[items, setItems] = React.useState([]);
+    const[selectedKit, setSelectedKit] = React.useState([]);
 
     const[allRequests, setAllRequests] = React.useState([]);
     
+    const request = {recipient_name, kit, item, quantity, note}
 
-    const request = {recipient_name, kits, items, note}
-
-    const handleFormKitChange = (index, event) => {
-        let data = [...kitRequests];
-        data[index][event.target.name] = event.target.value;
-        setKitRequests(data);
+    const handleCategory = (e) => {
+        setCategory(e.target.value)
+        setItems(items.filter(item => item.category === e.target.value))
     }
 
-    const addKits = () => {
-        let newfield = { name: '', age: '' };
-    
-        setKitRequests([...kitRequests, newfield]);
-    }
-
-    const removeKits = (index) => {
-        let data = [...kitRequests];
-        data.splice(index, 1)
-        setKitRequests(data)
-    }
-
-    const handleFormCategoryChange = (index, event) => {
-        let requestedCategory = event.target.value;
-        setCategoryOfRequests(requestedCategory);
-        // let updatedItems = getUpdatedItems(requestedCategory);
-        // setItems(updatedItems);
-        let data = [...itemRequests];
-        //let requestedCategory = [...categoryOfRequests]
-        data[index][event.target.name] = event.target.value;
-        requestedCategory[index][event.target.name] = event.target.value;
-        setItemRequests(data);
-        setCategoryOfRequests(requestedCategory);
-    }
-
-    
-
-    const handleFormItemChange = (index, event) => {
-        let data = [...itemRequests];
-        data[index][event.target.name] = event.target.value;
-        setItemRequests(data);
-    }
-
-    const addItems = () => {
-        let newfield = { name: '', age: '' };
-    
-        setKitRequests([...kitRequests, newfield]);
-    }
-
-    const removeItems = (index) => {
-        let data = [...kitRequests];
-        data.splice(index, 1)
-        setKitRequests(data)
+    const handleKit = (e) => {
+        setKit(e.target.value)
+        setSelectedKit(kits.filter(kit => kit.name === e.target.value))
     }
 
     // Submit a new request with the recipient name, list of kits/items and a note
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!recipient_name || (!kitRequests || !itemRequests)) {
+        if (!recipient_name 
+            // || (!kit && !item) || !quantity
+             ) {
           alert("All fields must be filled")
           return
         }
@@ -89,9 +47,9 @@ export const AidCKDetail = () => {
           ).then(() => {
             alert(`Request has been successfully added`)
             setName('');
-            setKitRequests('');
-            setCategoryOfRequests('');
-            setItemRequests('');
+            setKit('');
+            setItem('');   
+            setQuantity('');
             setNote('');
             window.location.reload(true)
           })
@@ -114,7 +72,7 @@ export const AidCKDetail = () => {
         fetch("http://localhost:5000/requests")
         .then(res => res.json())
         .then((result) => {
-            setAllRequests(result);
+          setAllRequests(result);
         }
     )
     }, [])
@@ -140,59 +98,79 @@ export const AidCKDetail = () => {
                     </label>
                 </div>
                 <div>
-                    <label style = {{ fontSize: '18px' }}>
-                    Aid Kits:
-                    {kitRequests.map((input, index) => (
-                        <div key ={index}>
+                    <label style = {{ fontSize: '18px' }}> What would you like to request:</label>
+                    <button onClick={() => setAidType('kit')}> Aid Kit</button>
+                    <button onClick={() => setAidType('item')}> Aid Item</button>
+                </div>
+                {aidType === 'kit' ? (
+                    <div>
+                    <div>
+                        <label style = {{ fontSize: '18px' }}>
+                        Aid Kits:
                             <select 
-                            value={input.kitName}
+                            value={kit}
                             placeholder='Kit'
-                            onChange={event => handleFormKitChange(index, event)}>
+                            onChange={(e) => handleKit(e)}>
                                 <option>Available aid kits</option>
                                 {kits.map((kit) => (
                                     <option>{kit.name}</option>
                                 ))}
                             </select>
-
                             <input 
+                            type='number'
                             name='quantity'
                             placeholder='Quantity'
-                            value ={input.quantity}
-                            onChange={event => handleFormKitChange(index, event)}
+                            value ={quantity}
+                            onChange={event => setQuantity(event.target.value)}
                             />
-                            <button onClick={() => removeKits(index)}>Remove</button>
-                        </div>
-                    ))}
-                    </label>
-                </div>
-                <button onClick={addKits}>Add More Kits</button>
-                <div>
-                    {itemRequests.map((input, index) => (
-                        <div key ={index}>
+                        </label>
+                    </div>
+                    <div>
+                        {/* <p style={{fontSize: '18px'}}>Kit Name: {item.name}</p>
+                        <p style={{fontSize: '18px'}}>Item Name: {item.items[index].itemName}</p>
+                        <p style={{fontSize: '18px'}}>Item Amount: {item.items[index].amount}</p> */}
+                    </div>
+                    </div>
+                ) : (
+                    <div>
+                    <div>
+                        <label style={{ fontSize: '18px' }}>
+                            Category Name:
                             <select 
-                            value={categoryOfRequests.categoryName}
-                            placeholder='Category'
-                            onChange={event => handleFormCategoryChange(index, event)}>
-                                <option>Aid Category</option>
-                                {categories.map((kit) => (
-                                    <option>{categories.name}</option>
-                                ))}
+                                value={category}
+                                placeholder='Category'
+                                onChange={e => handleCategory(e)}>
+                                    <option>Choose a Category</option>
+                                    {categories.map((currCategory) => (
+                                        <option>{currCategory.name}</option>
+                                    ))}
                             </select>
-                            <select
-                            >
-
+                        </label>
+                    </div>
+                    <div>
+                        <label style={{ fontSize: '18px' }}>
+                            Item Name:
+                            <select 
+                                value={item}
+                                placeholder='Item'
+                                onChange={(e) => setItem(e.target.value)}>
+                                    <option>Choose an Item</option>
+                                    {items.map((item) => (
+                                        <option>{item.name}</option>
+                                    ))}
                             </select>
                             <input 
+                            type='number'
                             name='quantity'
                             placeholder='Quantity'
-                            value ={input.quantity}
-                            onChange={event => handleFormItemChange(index, event)}
+                            value ={quantity}
+                            onChange={event => setQuantity(event.target.value)}
                             />
-                            <button onClick={() => removeKits(index)}>Remove</button>
-                        </div>
-                    ))}
-                </div>
-                <button onClick={addKits}>Add More Items</button>
+                        </label>
+                    </div>
+                    </div>
+                )
+                }
                 <div>
                     <label style = {{ fontSize: '18px' }}>
                     Note:

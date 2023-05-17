@@ -69,13 +69,6 @@ export const ReceiveDDetails = () => {
     )
     }, [])
 
-    // UseEffect called when category is changed and therefore updates the 'items' and updates the dropdown
-    useEffect(() => {
-        //fetch("//Get items for given category")
-        // category should hold the desired category
-        //setItems(result);
-    }, [category])
-
     return ( 
         <div>
         <h3>What would you like to donate:</h3>
@@ -98,6 +91,7 @@ export const ReceiveDDetails = () => {
                 <label style={{ fontSize: '18px' }}>
                     Category Name:
                     <select 
+                        value={category}
                         placeholder='Category'
                         onChange={e => handleCategory(e)}>
                             <option>Choose a Category</option>
