@@ -12,6 +12,10 @@ export const ReceiveDDetails = () => {
 
     const [receives, setReceives] = React.useState([]);
     
+    const handleCategory = (e) => {
+        setCategory(e.target.value)
+        setItems(items.filter(item => item.category === e.target.value))
+    }
 
     // Handle kit form submission and update user context
     const handleDonationSubmit = (e) => {
@@ -94,9 +98,8 @@ export const ReceiveDDetails = () => {
                 <label style={{ fontSize: '18px' }}>
                     Category Name:
                     <select 
-                        value={category}
                         placeholder='Category'
-                        onChange={(e) => setCategory(e.target.value)}>
+                        onChange={e => handleCategory(e)}>
                             <option>Choose a Category</option>
                             {categories.map((currCategory) => (
                                 <option>{currCategory.name}</option>
