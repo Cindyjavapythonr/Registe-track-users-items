@@ -17,7 +17,7 @@ export const CategoryAndKitsDetails = () => {
 
     const handleFormChange = (index, event) => {
         let data = [...kitItems];
-        data[index][event.target.name] = event.target.value;
+        data[index][event.target.itemName] = event.target.value;
         setKitItems(data);
     }
 
@@ -138,8 +138,9 @@ export const CategoryAndKitsDetails = () => {
             {kitItems.map((input, index) => (
                 <div key ={index}>
                     <select 
+                    name='itemName'
                     value={input.itemName}
-                    placeholder='Item'
+                    placeholder='ItemName'
                     onChange={event => handleFormChange(index, event)}>
                         <option>Choose an Item</option>
                         {items.map((item) => (
