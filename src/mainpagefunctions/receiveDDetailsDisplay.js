@@ -24,7 +24,7 @@ export const ReceiveDDetails = () => {
         console.log(donation)
         
         fetch(
-            "http://localhost:5000/receive/", {
+            "http://localhost:5000/receives/", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(donation)
@@ -45,13 +45,13 @@ export const ReceiveDDetails = () => {
         setDonors(result);
         }
     )
-        fetch("http://localhost:5000/categories")
+        fetch("http://localhost:5000/categories/category")
         .then(res => res.json())
         .then((result) => {
         setCategories(result);
         }
     )
-        fetch("http://localhost:5000/receive")
+        fetch("http://localhost:5000/receives")
         .then(res => res.json())
         .then((result) => {
         setReceives(result);
