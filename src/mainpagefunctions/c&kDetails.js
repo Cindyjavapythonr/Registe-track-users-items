@@ -103,7 +103,7 @@ export const AidCKDetail = () => {
 
     return(
         <div>
-            <h3>The available Aid Kits</h3>
+            <h3>Make a request</h3>
             <p>Please consider carefully how many items you need</p>
             <form style={{ margin: '20px', justifyContent: 'center'}} onSubmit={handleSubmit}>
                 <div>
