@@ -8,18 +8,28 @@ export const CategoryAndKitsDetails = () => {
     
     const [kitName, setKitName] = useState('');
     const [kitItems, setKitItems] = useState([
-        {itemName: '', amount: ''}
+        {'': 0}
     ]);
     
     const [categories, setCategories] = React.useState([]);
     const [kits, setKits] = React.useState([]);
     const [items, setItems] = React.useState([]);
 
+    //   const items = [
+    //   { name:"DryFoodItems", inventory:'low'},
+    //   { name:"HotFoodItems", inventory:'low'},
+    //   { name:"PersonalHygiene", inventory:'low'},
+    //   { name:"Footwear", inventory:'low'},
+    //   { name:"Warmlothing", inventory:'low'},
+    //   { name:"CasualClothing", inventory:'low'}
+    // ]
+
     const handleFormChange = (index, event) => {
         let data = [...kitItems];
-        data[index][event.target.itemName] = event.target.value;
+        data[index][event.target.name] = event.target.value;
         setKitItems(data);
     }
+
 
     const addKitItems = () => {
         let newfield = { itemName: '', amount: '' };
@@ -68,7 +78,7 @@ export const CategoryAndKitsDetails = () => {
         console.log(aidKit)
         
         fetch(
-          "http://localhost:5000/categories/kit/", {
+          "http://localhost:5000/categories/kit", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(aidKit)
@@ -94,7 +104,7 @@ export const CategoryAndKitsDetails = () => {
     .then((result) => {
       setKits(result);
     }
-  )
+    )
       fetch("http://localhost:5000/items")
       .then(res => res.json())
       .then((result) => {
@@ -137,27 +147,34 @@ export const CategoryAndKitsDetails = () => {
           <div>
             {kitItems.map((input, index) => (
                 <div key ={index}>
-                    <select 
-                    name='itemName'
-                    value={input.itemName}
-                    placeholder='ItemName'
-                    onChange={event => handleFormChange(index, event)}>
-                        <option>Choose an Item</option>
-                        {items.map((item) => (
-                            <option>{item.name}</option>
-                        ))}
-                    </select>
-                    <input 
-                      name='amount'
-                      placeholder='Amount'
-                      value ={input.amount}
-                      onChange={event => handleFormChange(index, event)}
-                    />
-                    <button onClick={() => removeKitItems(index)}>Remove</button>
+                    <div>
+                      <label style = {{ fontSize: '18px'}}>
+                          What would you like to add:
+                          <select 
+                            name='itemName'
+                            value={input.itemName}
+                            placeholder='ItemName'
+                            onChange={event => handleFormChange(index, event)}>
+                              {items.map((item) => (
+                                <option>{item.name}</option>
+                              ))}
+                          </select>
+                          <input 
+                            type='number'
+                            name='amount'
+                            placeholder='Amount'
+                            value ={input.amount}
+                            size={'1'}
+                            onChange={event => handleFormChange(index, event)}
+                          />
+                          <button onClick={() => removeKitItems(index)}>Remove</button>
+                      </label>
+                    </div>                   
                 </div>
             ))}
           </div>
           <button onClick={addKitItems}>Add More..</button>
+          <div />
           <button type="submit">Save</button>
         </form>
         <div>
@@ -180,8 +197,9 @@ export const CategoryAndKitsDetails = () => {
               <ul>
                   {kits.map((item, index) => (
                       <div key={index}>
-                          <p style={{fontSize: '18px'}}>Category: {item.name}</p>
-                          <p style={{fontSize: '18px'}}>Inventory Status: {item.items}</p>
+                          <p style={{fontSize: '18px'}}>Kit Name: {item.name}</p>
+                          <p style={{fontSize: '18px'}}>Item Name: {item.items[index].itemName}</p>
+                          <p style={{fontSize: '18px'}}>Item Amount: {item.items[index].amount}</p>
                           <hr />
                       </div>
                   ))}
