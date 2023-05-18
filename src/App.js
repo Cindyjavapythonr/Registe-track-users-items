@@ -52,28 +52,33 @@ const App = () => {
             }} >
             <div className="logo" style={{
                 float: 'left',
-                width: 60,
+                width: 40,
                 height: 31,
-                margin: '16px 24px 16px 0',
+                margin: '13px 16px 16px 0',
                 background: 'rgba(255, 255, 255, 0.2)',
                 backgroundImage: {logo}, 
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
-              }}>
-                <img src={logo} width="60" height="40" />
-              </div>
+            }}>
+              <img src={logo} width="40" height="40" />
+            </div>
             <Menu theme="dark" mode="horizontal" 
+              style={{
+                width: 500
+              }}
               defaultSelectedKeys={['O']} 
               items={menufuncs.map(({ label, route }) => ({ 
                 key: route, 
                 label: <Link to={route}>{label}</Link> 
-              }))} 
+              }))}
             />
+            {/* <p>Logged in as Staff</p> */}
           </Header>
           <Layout>
             <Sider
               width={250}
               style={{
+                position: 'sticky',
                 background: colorBgContainer,
               }}
             >
