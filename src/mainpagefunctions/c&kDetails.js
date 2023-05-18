@@ -13,7 +13,6 @@ export const AidCKDetail = () => {
     const[kits, setKits] = React.useState([]);
     const[categories, setCategories] = React.useState([]);
     const[items, setItems] = React.useState([]);
-    const[selectedKit, setSelectedKit] = React.useState([]);
     const[recipients, setRecipients] = React.useState([]);
 
     const[allRequests, setAllRequests] = React.useState([]);
@@ -27,7 +26,6 @@ export const AidCKDetail = () => {
 
     const handleKit = (e) => {
         setKit(e.target.value)
-        setSelectedKit(kits.filter(kit => kit.name === e.target.value))
     }
 
     const handleKitButton = () => {
@@ -148,11 +146,6 @@ export const AidCKDetail = () => {
                             onChange={event => setQuantity(event.target.value)}
                             />
                         </label>
-                    </div>
-                    <div>
-                        {/* <p style={{fontSize: '18px'}}>Kit Name: {item.name}</p>
-                        <p style={{fontSize: '18px'}}>Item Name: {item.items[index].itemName}</p>
-                        <p style={{fontSize: '18px'}}>Item Amount: {item.items[index].amount}</p> */}
                     </div>
                     </div>
                 ) : (
