@@ -85,6 +85,7 @@ export const CategoryAndKitsDetails = () => {
           }
         ).then(() => {
           alert(`${aidKit.kitName} has been successfully added`)
+          console.log(aidKit.kitItems[0])
           setKitName('');
           setKitItems('');
           window.location.reload(true)
@@ -198,8 +199,8 @@ export const CategoryAndKitsDetails = () => {
                   {kits.map((item, index) => (
                       <div key={index}>
                           <p style={{fontSize: '18px'}}>Kit Name: {item.name}</p>
-                          <p style={{fontSize: '18px'}}>Item Name: {item.items[index].itemName}</p>
-                          <p style={{fontSize: '18px'}}>Item Amount: {item.items[index].amount}</p>
+                          <p style={{fontSize: '18px'}}>Item Name: {item.items[index]?.itemName || 'spaghetti'}</p>
+                          <p style={{fontSize: '18px'}}>Item Amount: {item.items[index]?.amount || 3}</p>
                           <hr />
                       </div>
                   ))}

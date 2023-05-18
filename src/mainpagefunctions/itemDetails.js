@@ -102,6 +102,7 @@ export const ItemDetails = () => {
             <label style = {{ fontSize: '18px'}}>
                 Aid Kit:
                 <select value={kit} onChange={(e) => setKit(e.target.value)}>
+                  <option>Select kit</option>
                   {kits.map((currKit) => (
                     <option>{currKit.name}</option>
                   ))}
