@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 export const AidCKDetail = () => {
     const[recipient_name, setName] = useState('');
-    const[kit, setKit] = useState(['']);
+    const[kit, setKit] = useState('');
     const[item, setItem] = useState(['']);
     const[quantity, setQuantity] = useState(['']);
     const[note, setNote] = useState(['']);
@@ -14,6 +14,7 @@ export const AidCKDetail = () => {
     const[categories, setCategories] = React.useState([]);
     const[items, setItems] = React.useState([]);
     const[selectedKit, setSelectedKit] = React.useState([]);
+    const[recipients, setRecipients] = React.useState([]);
 
     const[allRequests, setAllRequests] = React.useState([]);
     
@@ -55,6 +56,7 @@ export const AidCKDetail = () => {
               body: JSON.stringify(request)
             }
           ).then(() => {
+            console.log(request)
             alert(`Request has been successfully added`)
             setName('');
             setKit('');
@@ -67,13 +69,13 @@ export const AidCKDetail = () => {
   
     useEffect(() =>
     {
-        fetch("http://localhost:5000/categories")
+        fetch("http://localhost:5000/categories/category")
         .then(res => res.json())
         .then((result) => {
           setCategories(result);
         }
       )
-      fetch("http://localhost:5000/kits")
+      fetch("http://localhost:5000/categories/kit")
       .then(res => res.json())
       .then((result) => {
         setKits(result);
@@ -83,6 +85,18 @@ export const AidCKDetail = () => {
         .then(res => res.json())
         .then((result) => {
           setAllRequests(result);
+        }
+    )
+    fetch("http://localhost:5000/items")
+        .then(res => res.json())
+        .then((result) => {
+          setItems(result);
+        }
+    )
+    fetch("http://localhost:5000/recipients")
+        .then(res => res.json())
+        .then((result) => {
+          setRecipients(result);
         }
     )
     }, [])
@@ -95,7 +109,16 @@ export const AidCKDetail = () => {
                 <div>
                     <label style = {{ fontSize: '18px' }}>
                     Recipient Name:
-                    <input type="text" value={recipient_name} onChange={(e) => setName(e.target.value)} />
+                    <select 
+                        value={recipient_name}
+                        placeholder='Recipient'
+                        onChange={(e) => setName(e.target.value)}
+                        >
+                            <option>Select recipient</option>
+                            {recipients.map((rec) => (
+                                <option>{rec.name}</option>
+                            ))}
+                    </select>
                     </label>
                 </div>
                 <div>
