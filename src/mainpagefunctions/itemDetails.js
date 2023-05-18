@@ -92,6 +92,7 @@ export const ItemDetails = () => {
             <label style = {{ fontSize: '18px'}}>
                 Category:
                 <select value={category} onChange={(e) => setCat(e.target.value)}>
+                  <option>Select category</option>
                   {categories.map((currCategory) => (
                     <option>{currCategory.name}</option>
                   ))}

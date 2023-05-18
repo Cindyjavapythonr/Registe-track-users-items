@@ -156,6 +156,7 @@ export const CategoryAndKitsDetails = () => {
                             value={input.itemName}
                             placeholder='ItemName'
                             onChange={event => handleFormChange(index, event)}>
+                              <option>Select item</option>
                               {items.map((item) => (
                                 <option>{item.name}</option>
                               ))}
